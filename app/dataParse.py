@@ -16,6 +16,7 @@ def parseData(csv_file_name):
             hours = row[1]
             hour_rows = mapHours(hours)
             for hour_row in hour_rows:
+                #pin the restaurant name to the hour row
                 hour_row["restaurant"] = restaurant
             if len(hour_rows) == 0:
                 print("No hours found for", restaurant)
@@ -164,5 +165,4 @@ def convert_time_stamp_string(day, time):
     return int(str_combined)
 
 if __name__ == "__main__":
-    print("Parsing data")
-    parseData()
+    parseData("restaurants.csv")
