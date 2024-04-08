@@ -2,14 +2,22 @@
 
 Liine Python API task
 
-TEMP To run locally instructions
+To run locally:
 
-1. Install the requirements `pip install -r requirements.txt`
-2. Create config.properties postgres properties:\
-   [DataBaseSection]\
-   dbname=\
-   dbuser=\
-   dbpassword=
-3. Run the following command from the project directory
+1. Install the requirements `pip install uvicorn fastapi`
+2. Run the following command from the project directory
    `uvicorn main:app --reload`
-4. GET requests can be made to `(http://127.0.0.1:8000/restaurants/{datetime})`
+3. GET requests can be made to `(http://127.0.0.1:8000/restaurants/{datetime})`
+
+Docker:
+
+1. Build the docker image using the following command
+   `docker build -t liine-py .`
+2. Run the docker container using the following command
+   `docker run -d --name liine-app1 -p 8000:8000 liine-py`
+3. GET requests can be made to `(http://127.0.0.1:8000/restaurants/{datetime})`
+
+Tests:
+
+1. Run the tests using the following command
+   `python -m unittest test_restaurant_data.py`
