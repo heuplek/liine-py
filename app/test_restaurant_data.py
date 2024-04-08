@@ -1,5 +1,6 @@
 import unittest
 import dataParse
+import main
 
 class TestRestaurantDataParsing(unittest.TestCase):
 
@@ -44,6 +45,11 @@ class TestRestaurantDataParsing(unittest.TestCase):
         self.assertIn({'open_ts': 70000, 'close_ts': 70130, 'restaurant': 'Test 2'}, test_data)
         self.assertIn({'open_ts': 71500, 'close_ts': 72330, 'restaurant': 'Test 2'}, test_data)
         self.assertEqual(len(test_data), 9)
+
+    def test_binary_search(self):
+        test_data = dataParse.parseData("test.csv")
+        print("Testing binary_search")
+        self.assertEqual(main.binary_search(test_data, "11130"), ['Test'])
 
 if __name__ == '__main__':
     unittest.main()

@@ -14,10 +14,6 @@ class DictList(object):
     def __len__(self):
         return self.data.__len__()
 
-data_close_times = DictList(sorted_dict, "close_ts")
-data_start_times = DictList(sorted_dict, "open_ts")
-
-
 app = FastAPI()
 
 @app.get("/")
@@ -32,15 +28,18 @@ async def find_restaurants(date: datetime.datetime = None):
     time = date.time()
     #convert input to DHHMM string(int)
     str_time = str(day) + time.strftime("%H%M")
-    open_restaurants = binary_search(sorted_dict, day, str_time)
+    open_restaurants = binary_search(sorted_dict, str_time)
     if(len(open_restaurants) == 0):
         return {"open_restaurants": "No restaurants are open at this time."}
     #break down date time into day of week and time.
     return {"open_restaurants": open_restaurants}
 
-def binary_search(data, day, time_stamp):
+def binary_search(data, time_stamp):
     #returns the start and end index of the data that contains the time_stamp 
     #(inclusive of open and close hours so Mon at 10PM will include restaurants that close at 10PM on Monday)
+    data_close_times = DictList(data, "close_ts")
+    data_start_times = DictList(data, "open_ts")
+    print(data_close_times, data_start_times)
     i = bisect.bisect_left(data_close_times, int(time_stamp))
     r = bisect.bisect_right(data_start_times, int(time_stamp))
     open_restaurants = []
