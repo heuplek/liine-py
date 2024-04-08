@@ -39,7 +39,6 @@ def binary_search(data, time_stamp):
     #(inclusive of open and close hours so Mon at 10PM will include restaurants that close at 10PM on Monday)
     data_close_times = DictList(data, "close_ts")
     data_start_times = DictList(data, "open_ts")
-    print(data_close_times, data_start_times)
     i = bisect.bisect_left(data_close_times, int(time_stamp))
     r = bisect.bisect_right(data_start_times, int(time_stamp))
     open_restaurants = []
