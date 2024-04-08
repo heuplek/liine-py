@@ -5,7 +5,7 @@ Liine Python API task
 To run locally:
 
 1. Install the requirements `pip install uvicorn fastapi`
-2. Run the following command from the project directory
+2. Run the following command from the /app directory
    `uvicorn main:app --reload`
 3. GET requests can be made to `(http://127.0.0.1:8000/restaurants/{datetime})`
 
